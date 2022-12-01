@@ -58,8 +58,8 @@ Ele vai automaticamente criar a pasta "out" com todos os seus componentes dentro
 • Neste arquivo, adicione a versão, nome e o arquivo do seu projeto
 ```cpp
 cmake_minimum_required(VERSION 3.12)
-project(Nome projeto)
-add_executable(Nome projeto main.cpp)
+project(nomeProjeto)
+add_executable(nomeProjeto main.cpp)
 ```
 
 <img src="https://i.imgur.com/ayjUZos.png" title="source: imgur.com" width="750"/>
@@ -108,3 +108,55 @@ Bibliotecas utilizadas:
 ```
 </details>
 
+---
+ 
+ ## Let's Code!
+ 
+- No arquivo <i><b>CMakeLists.txt</b></i> adicione as seguintes linhas de código:
+ 
+ ```cpp
+target_include_directories(nomeProjeto PRIVATE deps/freeglut/includedeps/glew/include)
+
+target_link_directories((nomeProjeto PRIVATE deps/glew/lib/Release/x64deps/freeglut/lib)
+
+target_link_libraries((nomeProjeto PRIVATE glew32.lib/freeglutd.lib)
+```
+ 
+- No arquivo <i><b>main.cpp</b></i> adicione as seguintes linhas de código:
+ 
+ ```cpp
+void initGL() {
+
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+}
+
+void display() {
+	glClear(GL_COLOR_BUFFER_BIT);
+	glBegin(GL_TRIANGLES);
+ glColor3f(0.1, 0.1, 0.1);
+
+	glVertex2f(0.0f,0.4f);
+	glVertex2f(0.4f,0.0f);
+	glVertex2f(-0.4f,0.0f);
+
+	glEnd();
+
+	glFlush();
+}
+
+
+int main(int argc, char** argv) {
+	glutInit(&argc, argv);
+	glutCreateWindow("Vertex, Primitive & Color");
+	glutInitWindowSize(320, 320);
+	glutDisplayFunc(display);
+	initGL();
+	glutMainLoop();
+	return 0;
+}
+```
+ 
+## Final Result
+ 
+<img src="https://i.imgur.com/kCOVB80.png" title="source: imgur.com" />
+ 
